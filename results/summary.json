@@ -1,0 +1,685 @@
+{
+  "cu": 0.25,
+  "stamps": {
+    "01-idle-clients": "5f2174e9bcff",
+    "02-health-checks-T60-I30": "284817d5e054",
+    "02-health-checks-T60-I90": "284817d5e054",
+    "02-health-checks-T60-I120": "284817d5e054",
+    "02-health-checks-T60-I180": "284817d5e054",
+    "02-health-checks-T300-I60": "284817d5e054",
+    "02-health-checks-T300-I300": "284817d5e054",
+    "02-health-checks-T300-I360": "284817d5e054",
+    "02-health-checks-T300-I420": "284817d5e054",
+    "02-health-checks-T300-I600": "284817d5e054",
+    "03-watch-unattended": "bdda5fae53e3"
+  },
+  "idleClients": {
+    "suspendTimeout": 60,
+    "scenarios": {
+      "none": {
+        "runs": 3,
+        "suspended": 3,
+        "lastQueryToSuspendSeconds": [
+          75,
+          68,
+          66
+        ],
+        "lastActiveToSuspendSeconds": [
+          78,
+          153,
+          229
+        ],
+        "stayedActiveForSeconds": [],
+        "lastActiveUpdatesWhileStaying": [],
+        "afterReleaseToSuspendSeconds": [],
+        "heldAfterSuspend": [],
+        "afterSuspend": [],
+        "wakeMs": [
+          694,
+          947,
+          907
+        ]
+      },
+      "idle-direct": {
+        "runs": 3,
+        "suspended": 3,
+        "lastQueryToSuspendSeconds": [
+          82,
+          81,
+          83
+        ],
+        "lastActiveToSuspendSeconds": [
+          319,
+          82,
+          172
+        ],
+        "stayedActiveForSeconds": [],
+        "lastActiveUpdatesWhileStaying": [],
+        "afterReleaseToSuspendSeconds": [],
+        "heldAfterSuspend": [
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 1,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          }
+        ],
+        "afterSuspend": [],
+        "wakeMs": [
+          815,
+          805,
+          793
+        ]
+      },
+      "idle-pooled": {
+        "runs": 3,
+        "suspended": 3,
+        "lastQueryToSuspendSeconds": [
+          81,
+          83,
+          81
+        ],
+        "lastActiveToSuspendSeconds": [
+          261,
+          353,
+          81
+        ],
+        "stayedActiveForSeconds": [],
+        "lastActiveUpdatesWhileStaying": [],
+        "afterReleaseToSuspendSeconds": [],
+        "heldAfterSuspend": [
+          {
+            "kind": "pooled",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "pooled",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "pooled",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          }
+        ],
+        "afterSuspend": [],
+        "wakeMs": [
+          774,
+          787,
+          804
+        ]
+      },
+      "idle-in-transaction-direct": {
+        "runs": 2,
+        "suspended": 0,
+        "lastQueryToSuspendSeconds": [],
+        "lastActiveToSuspendSeconds": [],
+        "stayedActiveForSeconds": [
+          360,
+          360
+        ],
+        "lastActiveUpdatesWhileStaying": [
+          2,
+          2
+        ],
+        "afterReleaseToSuspendSeconds": [
+          65,
+          72
+        ],
+        "heldAfterSuspend": [],
+        "afterSuspend": [],
+        "wakeMs": [
+          815,
+          1020
+        ]
+      },
+      "idle-in-transaction-pooled": {
+        "runs": 2,
+        "suspended": 0,
+        "lastQueryToSuspendSeconds": [],
+        "lastActiveToSuspendSeconds": [],
+        "stayedActiveForSeconds": [
+          360,
+          360
+        ],
+        "lastActiveUpdatesWhileStaying": [
+          2,
+          2
+        ],
+        "afterReleaseToSuspendSeconds": [
+          68,
+          72
+        ],
+        "heldAfterSuspend": [],
+        "afterSuspend": [],
+        "wakeMs": [
+          940,
+          792
+        ]
+      },
+      "idle-in-transaction-with-timeout": {
+        "runs": 2,
+        "suspended": 2,
+        "lastQueryToSuspendSeconds": [
+          102,
+          98
+        ],
+        "lastActiveToSuspendSeconds": [
+          301,
+          91
+        ],
+        "stayedActiveForSeconds": [],
+        "lastActiveUpdatesWhileStaying": [],
+        "afterReleaseToSuspendSeconds": [],
+        "heldAfterSuspend": [
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 1,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          }
+        ],
+        "afterSuspend": [],
+        "wakeMs": [
+          1080,
+          895
+        ]
+      },
+      "listen-direct": {
+        "runs": 2,
+        "suspended": 2,
+        "lastQueryToSuspendSeconds": [
+          83,
+          79
+        ],
+        "lastActiveToSuspendSeconds": [
+          181,
+          271
+        ],
+        "stayedActiveForSeconds": [],
+        "lastActiveUpdatesWhileStaying": [],
+        "afterReleaseToSuspendSeconds": [],
+        "heldAfterSuspend": [
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 1,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          },
+          {
+            "kind": "direct",
+            "errorEventBeforeQuery": {
+              "error": "Connection terminated unexpectedly",
+              "code": null
+            },
+            "query": {
+              "ok": false,
+              "ms": 0,
+              "error": "Client has encountered a connection error and is not queryable",
+              "code": null
+            }
+          }
+        ],
+        "afterSuspend": [
+          {
+            "notificationReceived": false
+          },
+          {
+            "notificationReceived": false
+          }
+        ],
+        "wakeMs": [
+          876,
+          296
+        ]
+      },
+      "monitor-postgres-db-20s": {
+        "runs": 1,
+        "suspended": 0,
+        "lastQueryToSuspendSeconds": [],
+        "lastActiveToSuspendSeconds": [],
+        "stayedActiveForSeconds": [
+          360
+        ],
+        "lastActiveUpdatesWhileStaying": [
+          3
+        ],
+        "afterReleaseToSuspendSeconds": [
+          63
+        ],
+        "heldAfterSuspend": [],
+        "afterSuspend": [],
+        "wakeMs": [
+          263
+        ]
+      }
+    },
+    "branchUsage": {
+      "t": "2026-10-18T18:46:31.485Z",
+      "stamp": "5f2174e9bcff",
+      "type": "branch-usage",
+      "branchId": "br-blue-recipe-b9g8vgi3",
+      "active_time_seconds": 1572,
+      "compute_time_seconds": 411,
+      "cpu_used_sec": 0,
+      "created_at": "2026-10-18T17:50:56Z"
+    }
+  },
+  "healthChecks": [
+    {
+      "suspendTimeout": 60,
+      "interval": 30,
+      "minutes": 12,
+      "checks": 24,
+      "failedChecks": 0,
+      "wakeChecks": 1,
+      "wakeMsMedian": 980,
+      "wakeMsMax": 980,
+      "warmMsMedian": 308,
+      "awakeSeconds": 720,
+      "awakeSecondsPerWake": null,
+      "awakeSecondsPerWakeAll": [],
+      "awakeFraction": 1,
+      "cuHoursPer30Days": 179.9,
+      "awakeSecondsFromOperations": 720,
+      "branchUsage": {
+        "t": "2026-10-18T18:07:33.255Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-ancient-credit-b9ch6i8t",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 60,
+      "interval": 90,
+      "minutes": 15,
+      "checks": 10,
+      "failedChecks": 0,
+      "wakeChecks": 10,
+      "wakeMsMedian": 848,
+      "wakeMsMax": 1310,
+      "warmMsMedian": null,
+      "awakeSeconds": 740,
+      "awakeSecondsPerWake": 74,
+      "awakeSecondsPerWakeAll": [
+        74,
+        73,
+        74,
+        74,
+        74,
+        74,
+        73,
+        74,
+        74,
+        74
+      ],
+      "awakeFraction": 0.822,
+      "cuHoursPer30Days": 148,
+      "awakeSecondsFromOperations": 736,
+      "branchUsage": {
+        "t": "2026-10-18T18:08:32.394Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-flat-sun-b919flgh",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 60,
+      "interval": 120,
+      "minutes": 16,
+      "checks": 8,
+      "failedChecks": 0,
+      "wakeChecks": 8,
+      "wakeMsMedian": 859.5,
+      "wakeMsMax": 1662,
+      "warmMsMedian": null,
+      "awakeSeconds": 674,
+      "awakeSecondsPerWake": 86,
+      "awakeSecondsPerWakeAll": [
+        87,
+        87,
+        86,
+        86,
+        71,
+        87,
+        86,
+        86
+      ],
+      "awakeFraction": 0.702,
+      "cuHoursPer30Days": 126.4,
+      "awakeSecondsFromOperations": 673,
+      "branchUsage": {
+        "t": "2026-10-18T18:09:34.729Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-calm-sun-b98fadjf",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 60,
+      "interval": 180,
+      "minutes": 18,
+      "checks": 6,
+      "failedChecks": 0,
+      "wakeChecks": 6,
+      "wakeMsMedian": 912,
+      "wakeMsMax": 1764,
+      "warmMsMedian": null,
+      "awakeSeconds": 437,
+      "awakeSecondsPerWake": 73,
+      "awakeSecondsPerWakeAll": [
+        72,
+        74,
+        73,
+        73,
+        73,
+        74
+      ],
+      "awakeFraction": 0.405,
+      "cuHoursPer30Days": 72.9,
+      "awakeSecondsFromOperations": 438,
+      "branchUsage": {
+        "t": "2026-10-18T18:11:48.155Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-sweet-wildflower-b9jshy6e",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 300,
+      "interval": 60,
+      "minutes": 30,
+      "checks": 31,
+      "failedChecks": 0,
+      "wakeChecks": 1,
+      "wakeMsMedian": 847,
+      "wakeMsMax": 847,
+      "warmMsMedian": 330,
+      "awakeSeconds": 1802,
+      "awakeSecondsPerWake": null,
+      "awakeSecondsPerWakeAll": [],
+      "awakeFraction": 1,
+      "cuHoursPer30Days": 180,
+      "awakeSecondsFromOperations": 1803,
+      "branchUsage": {
+        "t": "2026-10-18T18:27:49.245Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-icy-tooth-b9302nc4",
+        "active_time_seconds": 1584,
+        "compute_time_seconds": 399,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 300,
+      "interval": 300,
+      "minutes": 40,
+      "checks": 8,
+      "failedChecks": 0,
+      "wakeChecks": 1,
+      "wakeMsMedian": 853,
+      "wakeMsMax": 853,
+      "warmMsMedian": 339,
+      "awakeSeconds": 2400,
+      "awakeSecondsPerWake": null,
+      "awakeSecondsPerWakeAll": [],
+      "awakeFraction": 1,
+      "cuHoursPer30Days": 180,
+      "awakeSecondsFromOperations": 2401,
+      "branchUsage": {
+        "t": "2026-10-18T18:37:50.154Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-fancy-band-b9tdsoho",
+        "active_time_seconds": 1572,
+        "compute_time_seconds": 396,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 300,
+      "interval": 360,
+      "minutes": 42,
+      "checks": 7,
+      "failedChecks": 0,
+      "wakeChecks": 7,
+      "wakeMsMedian": 1040,
+      "wakeMsMax": 1753,
+      "warmMsMedian": null,
+      "awakeSeconds": 2283,
+      "awakeSecondsPerWake": 327,
+      "awakeSecondsPerWakeAll": [
+        325,
+        327,
+        326,
+        327,
+        326,
+        327,
+        327
+      ],
+      "awakeFraction": 0.905,
+      "cuHoursPer30Days": 162.9,
+      "awakeSecondsFromOperations": 2281,
+      "branchUsage": {
+        "t": "2026-10-18T19:36:21.637Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-dawn-poetry-b9o51df4",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 300,
+      "interval": 420,
+      "minutes": 42,
+      "checks": 6,
+      "failedChecks": 0,
+      "wakeChecks": 6,
+      "wakeMsMedian": 1133.5,
+      "wakeMsMax": 1878,
+      "warmMsMedian": null,
+      "awakeSeconds": 1884,
+      "awakeSecondsPerWake": 314,
+      "awakeSecondsPerWakeAll": [
+        313,
+        314,
+        314,
+        314,
+        313,
+        314
+      ],
+      "awakeFraction": 0.747,
+      "cuHoursPer30Days": 134.5,
+      "awakeSecondsFromOperations": 1880,
+      "branchUsage": {
+        "t": "2026-10-18T19:36:18.542Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-polished-firefly-b9ifoeen",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      }
+    },
+    {
+      "suspendTimeout": 300,
+      "interval": 600,
+      "minutes": 60,
+      "checks": 7,
+      "failedChecks": 0,
+      "wakeChecks": 7,
+      "wakeMsMedian": 936,
+      "wakeMsMax": 1163,
+      "warmMsMedian": null,
+      "awakeSeconds": 1880,
+      "awakeSecondsPerWake": 313,
+      "awakeSecondsPerWakeAll": [
+        312,
+        313,
+        313,
+        313,
+        313,
+        313
+      ],
+      "awakeFraction": 0.522,
+      "cuHoursPer30Days": 93.9,
+      "awakeSecondsFromOperations": 1875,
+      "branchUsage": {
+        "t": "2026-10-18T18:58:06.265Z",
+        "stamp": "284817d5e054",
+        "type": "branch-usage",
+        "branchId": "br-dark-smoke-b9zuur3b",
+        "active_time_seconds": 988,
+        "compute_time_seconds": 253,
+        "cpu_used_sec": 0
+      }
+    }
+  ],
+  "unattended": {
+    "hoursWatched": 1.41,
+    "everyMs": 15000,
+    "wakes": [],
+    "awakeSeconds": 0,
+    "finished": false,
+    "usage": [
+      {
+        "t": "2026-10-18T17:50:28.998Z",
+        "stamp": "bdda5fae53e3",
+        "type": "branch-usage",
+        "label": "start",
+        "active_time_seconds": 0,
+        "compute_time_seconds": 0,
+        "cpu_used_sec": 0
+      },
+      {
+        "t": "2026-10-18T18:20:38.959Z",
+        "stamp": "bdda5fae53e3",
+        "type": "branch-usage",
+        "label": "heartbeat",
+        "active_time_seconds": 368,
+        "compute_time_seconds": 94,
+        "cpu_used_sec": 0
+      },
+      {
+        "t": "2026-10-18T18:50:49.012Z",
+        "stamp": "bdda5fae53e3",
+        "type": "branch-usage",
+        "label": "heartbeat",
+        "active_time_seconds": 368,
+        "compute_time_seconds": 94,
+        "cpu_used_sec": 0
+      },
+      {
+        "t": "2026-10-18T19:20:58.565Z",
+        "stamp": "bdda5fae53e3",
+        "type": "branch-usage",
+        "label": "heartbeat",
+        "active_time_seconds": 368,
+        "compute_time_seconds": 94,
+        "cpu_used_sec": 0
+      }
+    ],
+    "pollFailures": null
+  }
+}

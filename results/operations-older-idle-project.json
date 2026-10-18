@@ -1,0 +1,39 @@
+{
+  "projectId": "polished-sea-98694330",
+  "fetchedAt": "2026-10-18T19:38:25.788Z",
+  "note": "Operations on an older project of ours (migration-rehearsal) for its main compute, plus project-level archive operations, from the compute last suspend on 2026-09-23 until the branch was archived on 2026-10-07. Branch operations on other branches of that project are left out. Source: scripts/05-operations.mjs.",
+  "mainEndpointSuspendedAtWhenFetched": "2026-09-23T17:59:16Z",
+  "operations": [
+    {
+      "action": "tenant_detach",
+      "status": "finished",
+      "endpoint": null,
+      "created": "2026-10-07T16:12:23Z",
+      "ms": 107
+    },
+    {
+      "action": "timeline_archive",
+      "status": "finished",
+      "branch": "br-ancient-salad-b2vntgbd",
+      "endpoint": null,
+      "created": "2026-10-07T16:10:25Z",
+      "ms": 446
+    },
+    {
+      "action": "check_availability",
+      "status": "finished",
+      "branch": "br-ancient-salad-b2vntgbd",
+      "endpoint": "ep-purple-cell-b29q6h3f",
+      "created": "2026-09-24T11:41:29Z",
+      "ms": 929
+    },
+    {
+      "action": "suspend_compute",
+      "status": "finished",
+      "branch": "br-ancient-salad-b2vntgbd",
+      "endpoint": "ep-purple-cell-b29q6h3f",
+      "created": "2026-09-23T17:59:16Z",
+      "ms": 615
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{"t":"2026-10-18T17:50:28.481Z","stamp":"bdda5fae53e3","type":"start","projectId":"odd-poetry-65586042","endpointId":"ep-weathered-shadow-b91petoo","hours":12,"everyMs":15000}
+{"t":"2026-10-18T17:50:28.998Z","stamp":"bdda5fae53e3","type":"branch-usage","label":"start","active_time_seconds":0,"compute_time_seconds":0,"cpu_used_sec":0}
+{"t":"2026-10-18T17:50:29.281Z","stamp":"bdda5fae53e3","type":"change","at":"2026-10-18T17:50:29.281Z","state":"active","lastActive":"2026-10-18T17:50:05Z","suspendedAt":null,"previous":null}
+{"t":"2026-10-18T17:56:22.168Z","stamp":"bdda5fae53e3","type":"change","at":"2026-10-18T17:56:22.168Z","state":"idle","lastActive":"2026-10-18T17:50:05Z","suspendedAt":"2026-10-18T17:56:15Z","previous":{"state":"active","lastActive":"2026-10-18T17:50:05Z","suspendedAt":null}}
+{"t":"2026-10-18T18:20:38.686Z","stamp":"bdda5fae53e3","type":"heartbeat","polls":119,"failures":0}
+{"t":"2026-10-18T18:20:38.959Z","stamp":"bdda5fae53e3","type":"branch-usage","label":"heartbeat","active_time_seconds":368,"compute_time_seconds":94,"cpu_used_sec":0}
+{"t":"2026-10-18T18:50:48.734Z","stamp":"bdda5fae53e3","type":"heartbeat","polls":237,"failures":0}
+{"t":"2026-10-18T18:50:49.012Z","stamp":"bdda5fae53e3","type":"branch-usage","label":"heartbeat","active_time_seconds":368,"compute_time_seconds":94,"cpu_used_sec":0}
+{"t":"2026-10-18T19:20:58.258Z","stamp":"bdda5fae53e3","type":"heartbeat","polls":355,"failures":0}
+{"t":"2026-10-18T19:20:58.565Z","stamp":"bdda5fae53e3","type":"branch-usage","label":"heartbeat","active_time_seconds":368,"compute_time_seconds":94,"cpu_used_sec":0}

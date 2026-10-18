@@ -1,0 +1,26 @@
+{
+  "name": "neon-keep-awake",
+  "version": "1.0.0",
+  "description": "Measure what keeps a Neon compute from scaling to zero, and what each pattern costs in CU-hours.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "setup": "node scripts/00-setup.mjs",
+    "idle-clients": "node scripts/01-idle-clients.mjs",
+    "health-checks": "node scripts/02-health-checks.mjs",
+    "watch-unattended": "node scripts/03-watch-unattended.mjs",
+    "summarize": "node scripts/04-summarize.mjs",
+    "operations": "node scripts/05-operations.mjs",
+    "rtt": "node scripts/06-network-rtt.mjs",
+    "database-timeout": "node scripts/07-database-timeout.mjs",
+    "verify-stamps": "node scripts/08-verify-stamps.mjs",
+    "teardown": "node scripts/99-teardown.mjs"
+  },
+  "dependencies": {
+    "pg": "8.16.3"
+  }
+}

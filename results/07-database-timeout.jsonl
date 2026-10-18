@@ -1,0 +1,3 @@
+{"t":"2026-10-18T18:52:14.488Z","stamp":"59a1cfa72b6b","type":"start","projectId":"odd-poetry-65586042","suspendTimeout":60,"setting":"30s"}
+{"t":"2026-10-18T18:54:04.348Z","stamp":"59a1cfa72b6b","type":"run","sessionSetting":"30s","lastQueryAt":"2026-10-18T18:52:18.752Z","suspended":true,"suspendedAt":"2026-10-18T18:54:00Z","secondsToSuspend":101,"leakedSessionError":{"message":"Connection terminated unexpectedly","code":null},"leakedSessionQuery":{"ok":false,"ms":1,"error":"Client has encountered a connection error and is not queryable","code":null}}
+{"t":"2026-10-18T18:54:06.544Z","stamp":"59a1cfa72b6b","type":"deleted","branchId":"br-shiny-meadow-b9h7qp3r"}

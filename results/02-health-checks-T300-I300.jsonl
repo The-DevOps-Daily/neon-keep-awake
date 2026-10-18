@@ -1,0 +1,15 @@
+{"t":"2026-10-18T17:52:40.187Z","stamp":"284817d5e054","type":"start","projectId":"odd-poetry-65586042","suspendTimeout":300,"interval":300,"minutes":40,"cu":0.25,"pollMs":3000}
+{"t":"2026-10-18T17:52:42.837Z","stamp":"284817d5e054","type":"branch","branchId":"br-fancy-band-b9tdsoho","endpointId":"ep-wispy-fire-b9456swo"}
+{"t":"2026-10-18T17:57:49.600Z","stamp":"284817d5e054","type":"poll","at":"2026-10-18T17:57:49.600Z","state":"idle","lastActive":"2026-10-18T17:52:42Z","suspendedAt":"2026-10-18T17:57:46Z"}
+{"t":"2026-10-18T17:57:50.460Z","stamp":"284817d5e054","type":"check","k":0,"stateBefore":"idle","ms":853,"ok":true,"error":null}
+{"t":"2026-10-18T17:57:52.861Z","stamp":"284817d5e054","type":"poll","at":"2026-10-18T17:57:52.861Z","state":"active","lastActive":"2026-10-18T17:52:42Z","suspendedAt":null}
+{"t":"2026-10-18T18:02:49.616Z","stamp":"284817d5e054","type":"check","k":1,"stateBefore":"active","ms":307,"ok":true,"error":null}
+{"t":"2026-10-18T18:07:49.611Z","stamp":"284817d5e054","type":"check","k":2,"stateBefore":"active","ms":303,"ok":true,"error":null}
+{"t":"2026-10-18T18:12:49.635Z","stamp":"284817d5e054","type":"check","k":3,"stateBefore":"active","ms":327,"ok":true,"error":null}
+{"t":"2026-10-18T18:17:49.666Z","stamp":"284817d5e054","type":"check","k":4,"stateBefore":"active","ms":357,"ok":true,"error":null}
+{"t":"2026-10-18T18:22:49.653Z","stamp":"284817d5e054","type":"check","k":5,"stateBefore":"active","ms":339,"ok":true,"error":null}
+{"t":"2026-10-18T18:27:49.690Z","stamp":"284817d5e054","type":"check","k":6,"stateBefore":"active","ms":382,"ok":true,"error":null}
+{"t":"2026-10-18T18:32:49.705Z","stamp":"284817d5e054","type":"check","k":7,"stateBefore":"active","ms":394,"ok":true,"error":null}
+{"t":"2026-10-18T18:37:49.879Z","stamp":"284817d5e054","type":"end","startedAt":"2026-10-18T17:57:49.308Z","endedAt":"2026-10-18T18:37:49.878Z"}
+{"t":"2026-10-18T18:37:50.154Z","stamp":"284817d5e054","type":"branch-usage","branchId":"br-fancy-band-b9tdsoho","active_time_seconds":1572,"compute_time_seconds":396,"cpu_used_sec":0}
+{"t":"2026-10-18T18:37:53.365Z","stamp":"284817d5e054","type":"deleted","branchId":"br-fancy-band-b9tdsoho"}
