@@ -21,11 +21,20 @@ const summary = { cu: CU, stamps: {} };
 const md = [];
 
 // Neon's own record of each compute's starts and suspends (scripts/05-operations.mjs),
-// used to check the awake time we measured by polling.
-const opsFile = readdirSync(results).find((f) => /^operations-.+\.json$/.test(f));
-const operations = opsFile ? JSON.parse(readFileSync(new URL(opsFile, results), "utf8")).operations : null;
-function awakeFromOperations(endpointId, from, to) {
-  if (!operations) return null;
+// used to check the awake time we measured by polling. These are operation
+// creation times, so the check is a cross-check, not a billing record.
+const opsCache = new Map();
+function operationsFor(projectId) {
+  if (!opsCache.has(projectId)) {
+    const file = new URL(`operations-${projectId}.json`, results);
+    opsCache.set(projectId, existsSync(file) ? JSON.parse(readFileSync(file, "utf8")).operations : null);
+  }
+  return opsCache.get(projectId);
+}
+function awakeFromOperations(projectId, endpointId, from, to) {
+  const operations = operationsFor(projectId);
+  // No log, or no start for this compute in it: unknown, not zero.
+  if (!operations || !operations.some((o) => o.endpoint === endpointId && o.action === "start_compute")) return null;
   // Neon's timestamps have no fractions and ours do, so work in milliseconds.
   const [f, t] = [Date.parse(from), Date.parse(to)];
   const ops = operations
@@ -102,19 +111,25 @@ if (hcFiles.length) {
     const start = lines.find((l) => l.type === "start");
     const end = lines.find((l) => l.type === "end");
     if (!end) continue; // still running
-    const checks = lines.filter((l) => l.type === "check");
-    const polls = lines.filter((l) => l.type === "poll");
-    // Awake intervals: a check that found the compute asleep starts one (it
-    // woke it); a poll that sees it suspended ends one at Neon's suspended_at.
+    // The window is exactly the configured minutes from the first check. The
+    // runner could fire one more check right at the deadline and stopped a few
+    // seconds late; both are cut off here, so every row covers the same span.
+    const startedAt = end.startedAt;
+    const endedAt = new Date(Date.parse(startedAt) + start.minutes * 60_000).toISOString();
+    const checkStart = (c) => new Date(Date.parse(c.t) - c.ms).toISOString();
+    // Check k is due at k x interval; only those due before the end count.
+    const checks = lines.filter((l) => l.type === "check" && l.k * start.interval < start.minutes * 60);
+    const polls = lines.filter((l) => l.type === "poll" && l.at < endedAt);
+    // Awake intervals, estimated: a check whose last API reading showed the
+    // compute suspended starts one (it woke it) at the moment the check began
+    // connecting; a poll that shows it suspended ends one at Neon's suspended_at.
     const events = [
-      ...checks.map((c) => ({ at: new Date(new Date(c.t) - c.ms).toISOString(), kind: "check", woke: c.stateBefore !== "active" })),
+      ...checks.map((c) => ({ at: checkStart(c), kind: "check", woke: c.stateBefore !== "active" })),
       ...polls.map((p) => ({ at: p.at, kind: "poll", state: p.state, suspendedAt: p.suspendedAt })),
     ].sort((a, b) => a.at.localeCompare(b.at));
     let awakeSince = null;
     let awake = 0;
     const completed = []; // seconds awake for each wake that ended in a suspend inside the window
-    const startedAt = end.startedAt;
-    const endedAt = end.endedAt;
     for (const ev of events) {
       if (ev.at < startedAt) {
         if (ev.kind === "poll" && ev.state === "active") awakeSince = startedAt;
@@ -125,9 +140,9 @@ if (hcFiles.length) {
         // A poll still showing the suspend from before this wake is stale.
         // (Neon's timestamps have no fractions, so compare as dates, not strings.)
         if (ev.suspendedAt && new Date(ev.suspendedAt) <= new Date(awakeSince)) continue;
-        const until = ev.suspendedAt ?? ev.at;
+        const until = ev.suspendedAt && ev.suspendedAt.replace("Z", ".000Z") < endedAt ? ev.suspendedAt : endedAt;
         awake += ms(awakeSince, until);
-        if (awakeSince > startedAt) completed.push(Math.round(ms(awakeSince, until) / 1000));
+        if (awakeSince > startedAt && until !== endedAt) completed.push(Math.round(ms(awakeSince, until) / 1000));
         awakeSince = null;
       }
     }
@@ -152,7 +167,7 @@ if (hcFiles.length) {
       awakeSecondsPerWakeAll: completed,
       awakeFraction: Number(fraction.toFixed(3)),
       cuHoursPer30Days: Number((fraction * 24 * 30 * CU).toFixed(1)),
-      awakeSecondsFromOperations: awakeFromOperations(lines.find((l) => l.type === "branch").endpointId, startedAt, endedAt),
+      awakeSecondsFromOperations: awakeFromOperations(start.projectId, lines.find((l) => l.type === "branch").endpointId, startedAt, endedAt),
       branchUsage: lines.find((l) => l.type === "branch-usage") ?? null,
     };
     summary.healthChecks.push(row);
@@ -182,6 +197,8 @@ if (existsSync(new URL("03-watch-unattended.jsonl", results))) {
       since = null;
     }
   }
+  // A wake still going when the watch ended counts too, up to the end.
+  if (since) wakes.push({ seenAt: since.at, lastActive: since.lastActive, suspendedAt: null, ongoing: true, awakeSecondsApprox: sec(since.at, lastAt) });
   const hours = firstSuspend ? ms(firstSuspend.t, lastAt) / 3600_000 : 0;
   const awake = wakes.reduce((s, w) => s + w.awakeSecondsApprox, 0);
   summary.unattended = {

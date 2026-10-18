@@ -487,18 +487,18 @@
       "suspendTimeout": 300,
       "interval": 60,
       "minutes": 30,
-      "checks": 31,
+      "checks": 30,
       "failedChecks": 0,
       "wakeChecks": 1,
       "wakeMsMedian": 847,
       "wakeMsMax": 847,
-      "warmMsMedian": 330,
-      "awakeSeconds": 1802,
+      "warmMsMedian": 329,
+      "awakeSeconds": 1800,
       "awakeSecondsPerWake": null,
       "awakeSecondsPerWakeAll": [],
       "awakeFraction": 1,
       "cuHoursPer30Days": 180,
-      "awakeSecondsFromOperations": 1803,
+      "awakeSecondsFromOperations": 1800,
       "branchUsage": {
         "t": "2026-10-18T18:27:49.245Z",
         "stamp": "284817d5e054",
@@ -524,7 +524,7 @@
       "awakeSecondsPerWakeAll": [],
       "awakeFraction": 1,
       "cuHoursPer30Days": 180,
-      "awakeSecondsFromOperations": 2401,
+      "awakeSecondsFromOperations": 2400,
       "branchUsage": {
         "t": "2026-10-18T18:37:50.154Z",
         "stamp": "284817d5e054",
@@ -556,8 +556,8 @@
         327,
         327
       ],
-      "awakeFraction": 0.905,
-      "cuHoursPer30Days": 162.9,
+      "awakeFraction": 0.906,
+      "cuHoursPer30Days": 163,
       "awakeSecondsFromOperations": 2281,
       "branchUsage": {
         "t": "2026-10-18T19:36:21.637Z",
@@ -606,13 +606,13 @@
       "suspendTimeout": 300,
       "interval": 600,
       "minutes": 60,
-      "checks": 7,
+      "checks": 6,
       "failedChecks": 0,
-      "wakeChecks": 7,
-      "wakeMsMedian": 936,
+      "wakeChecks": 6,
+      "wakeMsMedian": 1004,
       "wakeMsMax": 1163,
       "warmMsMedian": null,
-      "awakeSeconds": 1880,
+      "awakeSeconds": 1877,
       "awakeSecondsPerWake": 313,
       "awakeSecondsPerWakeAll": [
         312,
@@ -622,9 +622,9 @@
         313,
         313
       ],
-      "awakeFraction": 0.522,
-      "cuHoursPer30Days": 93.9,
-      "awakeSecondsFromOperations": 1875,
+      "awakeFraction": 0.521,
+      "cuHoursPer30Days": 93.8,
+      "awakeSecondsFromOperations": 1872,
       "branchUsage": {
         "t": "2026-10-18T18:58:06.265Z",
         "stamp": "284817d5e054",
@@ -637,7 +637,7 @@
     }
   ],
   "unattended": {
-    "hoursWatched": 1.41,
+    "hoursWatched": 1.91,
     "everyMs": 15000,
     "wakes": [],
     "awakeSeconds": 0,
@@ -672,6 +672,15 @@
       },
       {
         "t": "2026-10-18T19:20:58.565Z",
+        "stamp": "bdda5fae53e3",
+        "type": "branch-usage",
+        "label": "heartbeat",
+        "active_time_seconds": 368,
+        "compute_time_seconds": 94,
+        "cpu_used_sec": 0
+      },
+      {
+        "t": "2026-10-18T19:51:10.597Z",
         "stamp": "bdda5fae53e3",
         "type": "branch-usage",
         "label": "heartbeat",

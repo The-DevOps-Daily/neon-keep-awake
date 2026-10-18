@@ -39,8 +39,8 @@ From our runs in `aws-eu-central-1`, 0.25 CU (full tables in `results/summary.md
 - An idle connection, direct or pooled, did not stop the suspend (3 of 3 each). Neither did a `LISTEN` connection. The suspend closed all of them.
 - An open transaction (`idle in transaction`), direct or pooled, kept the compute awake for the whole 6-minute window, 4 of 4. `idle_in_transaction_session_timeout` fixed it.
 - A monitoring query every 20 seconds kept it awake.
-- A health check every 5 minutes kept a compute with the default 5-minute timeout awake 100% of the time: the suspend comes 312 to 327 seconds after a wake. Every 6 minutes: 90.5%. Every 10 minutes: 52.2%.
-- Polled awake time matched Neon's operations log within 0.5 percentage points.
+- A health check every 5 minutes kept a compute with the default 5-minute timeout awake for the whole 40-minute run: in these runs the suspend came 312 to 327 seconds after a wake. Every 6 minutes: 90.6% awake. Every 10 minutes: 52.1%.
+- Polled awake time matched Neon's operations log within half a percentage point.
 
 Write-up: _link added when the post is published_.
 
