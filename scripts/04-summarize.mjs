@@ -218,7 +218,7 @@ if (existsSync(new URL("03-watch-unattended.jsonl", results))) {
     pollFailures: done?.failures ?? null,
   };
   md.push(`## Unattended compute (no client at all)\n`);
-  md.push(`Watched for ${hours.toFixed(1)} h after its first suspend (poll every ${start.everyMs / 1000} s). Wakes nobody asked for: ${wakes.length}, awake about ${awake} s in total.${done ? "" : " Still running."}\n`);
+  md.push(`Watched for ${hours.toFixed(1)} h after its first suspend (poll every ${start.everyMs / 1000} s). Wakes nobody asked for: ${wakes.length}, awake about ${awake} s in total.${done ? "" : " The watch was stopped before its planned end; its last record is the last heartbeat."}\n`);
   for (const w of wakes) md.push(`- seen active ${w.seenAt}, last_active ${w.lastActive}, suspended ${w.suspendedAt} (about ${w.awakeSecondsApprox} s)`);
   md.push("");
 }

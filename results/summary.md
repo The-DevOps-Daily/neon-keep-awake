@@ -27,6 +27,6 @@
 
 ## Unattended compute (no client at all)
 
-Watched for 1.9 h after its first suspend (poll every 15 s). Wakes nobody asked for: 0, awake about 0 s in total. Still running.
+Watched for 3.9 h after its first suspend (poll every 15 s). Wakes nobody asked for: 0, awake about 0 s in total. The watch was stopped before its planned end; its last record is the last heartbeat.
 
 
