@@ -119,7 +119,9 @@ if (hcFiles.length) {
     const checkStart = (c) => new Date(Date.parse(c.t) - c.ms).toISOString();
     // Check k is due at k x interval; only those due before the end count.
     const checks = lines.filter((l) => l.type === "check" && l.k * start.interval < start.minutes * 60);
-    const polls = lines.filter((l) => l.type === "poll" && l.at < endedAt);
+    // Polls after the end are kept: they can still report a suspend that
+    // happened inside the window. They never start an awake period.
+    const polls = lines.filter((l) => l.type === "poll");
     // Awake intervals, estimated: a check whose last API reading showed the
     // compute suspended starts one (it woke it) at the moment the check began
     // connecting; a poll that shows it suspended ends one at Neon's suspended_at.
@@ -128,23 +130,28 @@ if (hcFiles.length) {
       ...polls.map((p) => ({ at: p.at, kind: "poll", state: p.state, suspendedAt: p.suspendedAt })),
     ].sort((a, b) => a.at.localeCompare(b.at));
     let awakeSince = null;
+    let carriedIn = false; // awake already when the window opened: not a full cycle
     let awake = 0;
     const completed = []; // seconds awake for each wake that ended in a suspend inside the window
     for (const ev of events) {
       if (ev.at < startedAt) {
-        if (ev.kind === "poll" && ev.state === "active") awakeSince = startedAt;
+        if (ev.kind === "poll" && ev.state === "active") [awakeSince, carriedIn] = [startedAt, true];
         continue;
       }
-      if (awakeSince === null && ((ev.kind === "check" && ev.woke) || (ev.kind === "poll" && ev.state === "active"))) awakeSince = ev.at;
-      else if (awakeSince !== null && ev.kind === "poll" && ev.state !== "active") {
+      if (awakeSince === null && ev.at < endedAt && ((ev.kind === "check" && ev.woke) || (ev.kind === "poll" && ev.state === "active"))) {
+        [awakeSince, carriedIn] = [ev.at, false];
+      } else if (awakeSince !== null && ev.kind === "poll" && ev.state !== "active") {
         // A poll still showing the suspend from before this wake is stale.
         // (Neon's timestamps have no fractions, so compare as dates, not strings.)
         if (ev.suspendedAt && new Date(ev.suspendedAt) <= new Date(awakeSince)) continue;
-        const until = ev.suspendedAt && ev.suspendedAt.replace("Z", ".000Z") < endedAt ? ev.suspendedAt : endedAt;
+        const suspended = ev.suspendedAt ?? ev.at;
+        const inside = Date.parse(suspended) < Date.parse(endedAt);
+        const until = inside ? suspended : endedAt;
         awake += ms(awakeSince, until);
-        if (awakeSince > startedAt && until !== endedAt) completed.push(Math.round(ms(awakeSince, until) / 1000));
+        if (!carriedIn && inside) completed.push(Math.round(ms(awakeSince, until) / 1000));
         awakeSince = null;
       }
+      if (ev.at >= endedAt && awakeSince === null) break;
     }
     if (awakeSince !== null) awake += ms(awakeSince, endedAt);
     const window = ms(startedAt, endedAt);
