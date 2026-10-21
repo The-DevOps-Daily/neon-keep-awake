@@ -42,7 +42,7 @@ From our runs in `aws-eu-central-1`, 0.25 CU (full tables in `results/summary.md
 - A health check every 5 minutes kept a compute with the default 5-minute timeout awake for the whole 40-minute run: in these runs the suspend came 312 to 327 seconds after a wake. Every 6 minutes: 90.6% awake. Every 10 minutes: 52.1%.
 - Polled awake time matched Neon's operations log within half a percentage point.
 
-Write-up: _link added when the post is published_.
+Write-up: [What Keeps a Neon Compute Awake, and What It Costs](https://devops-daily.com/posts/what-keeps-a-neon-compute-awake)
 
 The raw runs are in `results/*.jsonl`; every line carries a hash of the code that wrote it (`npm run verify-stamps`).
 
